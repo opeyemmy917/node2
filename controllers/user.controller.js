@@ -7,7 +7,7 @@ const sendemail = require("../utils/mailer")
 const sendotp = require("../utils/otp.mailer")
 const generateotp = require("../utils/generator")
 const otpmodel = require("../models/otp.model")
-const Product = require("../models/Product.model");
+// const Product = require("../models/Product.model");
 
     const registeruser = async(req,res)=>{
         try {
