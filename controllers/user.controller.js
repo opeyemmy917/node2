@@ -111,7 +111,7 @@ const otpmodel = require("../models/otp.model")
           } else {
             const uploadedimage= await cloudinary.uploader.upload(image)
             console.log(uploadedimage.secure_url);
-            const updateimage = usermodel.findOneAndUpdate(
+            const updateimage =await usermodel.findOneAndUpdate(
                 {email:decodedtoken.email},
                 {$set:{profile:uploadedimage.secure_url}},
                 {new:true}
