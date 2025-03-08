@@ -109,13 +109,15 @@ const otpmodel = require("../models/otp.model")
             res.status(400).send({message:"invalid token",status:false})
             
           } else {
-            const uploadedimage= await cloudinary.uploader.upload(image)
-            console.log(uploadedimage.secure_url);
+            const uploadedimage = await cloudinary.uploader.upload(image)
+            console.log(uploadedimage.secure_url, "uploaded image");
             const updateimage =await usermodel.findOneAndUpdate(
                 {email:decodedtoken.email},
                 {$set:{profile:uploadedimage.secure_url}},
                 {new:true}
             )
+            console.log(updateimage, "profile update");
+            
             if(updateimage){
                 res.status(200).send({message:"profile updated successfully",status:true})
             }else{
