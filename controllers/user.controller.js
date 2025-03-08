@@ -9,8 +9,6 @@ const generateotp = require("../utils/generator")
 const otpmodel = require("../models/otp.model")
 const Product = require("../models/Product.model.js");
 
-
-
     const registeruser = async(req,res)=>{
         try {
             const {password ,email,name,age}= req.body
@@ -201,8 +199,8 @@ const Product = require("../models/Product.model.js");
       const savedProduct = await newProduct.save();
 
         } catch (error) {
-   console.error(error);
-    res.status(500).send({ message:error.message,status:false }); 
+         console.error(error);
+          res.status(500).send({ message:error.message,status:false }); 
         }
     }
 
