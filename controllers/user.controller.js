@@ -99,12 +99,14 @@ const otpmodel = require("../models/otp.model")
 
     }
 
-    const uploadprofile = async(req,res)=>{
+    const uploadprofile = async (req,res) =>{
         try {
-          const {image}=req.body  
+          const { image } = req.body
+          console.log(image);
+            
           const token = req.headers.authorization.split(" ")[1] 
           console.log(token);
-          const decodedtoken = await jwt.verify(token,process.env.SECRETKEY)
+          const decodedtoken = await jwt.verify(token, process.env.SECRETKEY)
           console.log(decodedtoken);
           if (!decodedtoken) {
             res.status(400).send({message:"invalid token",status:false})
@@ -125,16 +127,14 @@ const otpmodel = require("../models/otp.model")
             res.status(404).send({message:"error updating profile",status:false})
             }
             
-          }   
-          
+          }     
         } catch (error) {
             console.log(error);
-            
             res.status(500).send({message:error.message,status:false})
         }
     }
 
-    
+
     const forgotpassword = async(req,res)=>{
         try {
             const {email} = req.body
