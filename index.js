@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const userrouter = require("./routes/userroutes")
      require("dotenv").config()
 app.use(cors({origin:"*"}))
-app.use(express.json())
+app.use(express.json({extended:true, limit:"50mb"}))
 app.use("/",userrouter)
 
 // app.get("/datas", (req,res)=>{
