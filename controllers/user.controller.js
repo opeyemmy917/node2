@@ -7,7 +7,7 @@ const sendemail = require("../utils/mailer")
 const sendotp = require("../utils/otp.mailer")
 const generateotp = require("../utils/generator")
 const otpmodel = require("../models/otp.model")
-// const Product = require("../models/Product.model");
+const Product = require("../models/Product.model");
 
     const registeruser = async(req,res)=>{
         try {
@@ -185,8 +185,8 @@ const otpmodel = require("../models/otp.model")
     }
     const product = async(req,res)=>{
         try {
-      const { productId, productName, productDescription } = req.body;
-      if (!productId || !productName || !productDescription) {
+      const { productName, productDescription } = req.body;
+      if ( !productName || !productDescription) {
         res.status(404).send({message:"All field is required",status:false})
       }
       const newProduct = new Product({
