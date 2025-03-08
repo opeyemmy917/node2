@@ -196,7 +196,12 @@ const Product = require("../models/Product.model");
             productPrice:""
           });
     
-          const savedProduct = await newProduct.save();    
+          const savedProduct = await newProduct.save();  
+          if(savedProduct){
+            res.status(200).send({message:"Product created successfully",status:True})
+          }else{
+            res.status(404).send({message:error.message,status:false})
+          }
       }
         } catch (error) {
          console.error(error);
