@@ -7,6 +7,8 @@ const sendemail = require("../utils/mailer")
 const sendotp = require("../utils/otp.mailer")
 const generateotp = require("../utils/generator")
 const otpmodel = require("../models/otp.model")
+const Product = require('../models/product');
+
 
 
     const registeruser = async(req,res)=>{
@@ -183,4 +185,36 @@ const otpmodel = require("../models/otp.model")
         }
 
     }
-    module.exports= {registeruser,loginuser,verifyuser,uploadprofile,forgotpassword,resetpassword}
+    const product = async(req,res)=>{
+        try {
+      const { productId, productName, productDescription } = req.body;
+      if (!productId || !productName || !productDescription) {
+        res.status(404).send({message:"All field is required",status:false})
+      }
+      const newProduct = new Product({
+        productId:"",
+        productName:"",
+        productDescription:"",
+        productPrice:""
+      });
+
+      const savedProduct = await newProduct.save();
+
+        } catch (error) {
+   console.error(error);
+    res.status(500).send({ message:error.message,status:false }); 
+        }
+    }
+
+
+   
+
+    //  [
+    //     { id: 1, name: 'Product A' },
+    //     { id: 2, name: 'Product B' },
+    //     { id: 3, name: 'Product C' },
+    //   ];
+      
+     
+      
+    module.exports= {registeruser,loginuser,verifyuser,uploadprofile,forgotpassword,resetpassword,product}

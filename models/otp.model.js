@@ -5,6 +5,8 @@ const otpschem = new mongoose.Schema({
     email:{ type: String, required:true}
 })
 
+
 const otpmodel = mongoose.model("otp_collection",otpschem)
+
 
 module.exports = otpmodel;

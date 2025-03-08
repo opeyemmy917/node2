@@ -1,8 +1,9 @@
 const express = require ("express")
 const userrouter = express.Router()
-const {registeruser,loginuser,verifyuser,uploadprofile,forgotpassword,resetpassword} = require("../controllers/user.controller") 
+const {registeruser,loginuser,verifyuser,uploadprofile,forgotpassword,resetpassword,product} = require("../controllers/user.controller") 
 const uservalidation = require("../middleware/uservalidation")
 const validateform = require("../middleware/validator")
+
 
 
 
@@ -12,6 +13,8 @@ userrouter.get ("/user/verify",verifyuser)
 userrouter.post ("/user/upload",uploadprofile)
 userrouter.post ("/user/forgotpassword",forgotpassword)
 userrouter.post ("/user/resetpassword",resetpassword)
+userrouter.post ("/user/product",product,)
+
 
 
 
