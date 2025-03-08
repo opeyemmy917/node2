@@ -183,21 +183,21 @@ const Product = require("../models/Product.model");
         }
 
     }
+
     const product = async(req,res)=>{
         try {
       const { productName, productDescription } = req.body;
-      if ( !productName || !productDescription) {
+      if ( !productName || !productDescription || !productPrice) {
         res.status(404).send({message:"All field is required",status:false})
+      }else{
+        const newProduct = new Product({
+            productName:"",
+            productDescription:"",
+            productPrice:""
+          });
+    
+          const savedProduct = await newProduct.save();    
       }
-      const newProduct = new Product({
-        productId:"",
-        productName:"",
-        productDescription:"",
-        productPrice:""
-      });
-
-      const savedProduct = await newProduct.save();
-
         } catch (error) {
          console.error(error);
           res.status(500).send({ message:error.message,status:false }); 
