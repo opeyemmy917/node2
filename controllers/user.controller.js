@@ -98,6 +98,7 @@ const otpmodel = require("../models/otp.model")
         }
 
     }
+
     const uploadprofile = async(req,res)=>{
         try {
           const {image}=req.body  
@@ -111,7 +112,7 @@ const otpmodel = require("../models/otp.model")
           } else {
             const uploadedimage = await cloudinary.uploader.upload(image)
             console.log(uploadedimage.secure_url, "uploaded image");
-            const updateimage =await usermodel.findOneAndUpdate(
+            const updateimage = await usermodel.findOneAndUpdate(
                 {email:decodedtoken.email},
                 {$set:{profile:uploadedimage.secure_url}},
                 {new:true}
@@ -129,10 +130,11 @@ const otpmodel = require("../models/otp.model")
         } catch (error) {
             console.log(error);
             
-            res.status(500).json({message:error.message,status:false})
+            res.status(500).send({message:error.message,status:false})
         }
-
     }
+
+    
     const forgotpassword = async(req,res)=>{
         try {
             const {email} = req.body
